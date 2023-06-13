@@ -1,3 +1,10 @@
+### System Overview
+    - FaceRecoMain
+        - 
+    - FaceRecoApi
+        -
+
+
 ###  Important Videos for concept clearing
 - Python functions are first class objects and can be assigned to another object/variable
     - for example there is a following code: 
@@ -9,3 +16,4 @@
     - here is a [video](https://www.youtube.com/watch?v=p8RU0JH2xb8) explained why python functions are first class objects
 
 - What is a HOG classification/model? [video link here](https://www.youtube.com/watch?v=thcB1NcorV8)
+
