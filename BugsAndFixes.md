@@ -2,17 +2,33 @@
 
 Bugs encountered throughout the project and their fixes are provided here
 
+## Applicable on
+
+- `IDE`: JetBrains PyCharm Community Edition
+- `OS`: Arch Linux 6.1.33-1-lts
+- `Python Interpreter`: python3.11
+
+---
+
+## cv2 error
+
+### Errors
+
+- ModuleError: cv2 module not found
+
+### Fix
+
+- Install OpenCV manually on your venv (virtual environment)
+
+  ```bash
+    pip install opencv-python
+  ```
+
 ---
 
 ## Dlib ImportError
 
 There can be two types of ImportError found even after installing dlib
-
-### Applicable on
-
-- `IDE`: JetBrains PyCharm Community Edition
-- `OS`: Arch Linux 6.1.33-1-lts
-- `Python Interpreter`: python3.11
 
 ### Errors
 
