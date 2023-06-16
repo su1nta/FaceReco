@@ -14,7 +14,7 @@ Bugs encountered throughout the project and their fixes are provided here
 
 ### Errors
 
-- ModuleError: cv2 module not found
+- ModuleNotFoundError: cv2 module not found
 
 ### Fix
 
