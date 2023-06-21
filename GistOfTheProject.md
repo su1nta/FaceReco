@@ -52,6 +52,8 @@ There is the main two program which will have the necessary functions to perform
     - release the capture
     - destroy the resulting window
 
+    - `There will be some addition of the steps according to the changes in the FaceRecoApi section`
+
 - FaceRecoApi
   - import packages: Python Image Library(PIL), dlib, numpy, trained face recognition models
   - load the image file
@@ -60,6 +62,9 @@ There is the main two program which will have the necessary functions to perform
   - encode the face: 128-dimension face encoding
   - get euclidean distance of the detected face and known faces
   - compare by distance and return list with distances and name if face is matched
+
+  - `some addition to the project:`
+    - the unrecognized faces will be e-mailed to a specific e-mail id once
 
 ---
 
