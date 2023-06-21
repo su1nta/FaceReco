@@ -3,6 +3,7 @@ import PIL.Image as im
 import dlib
 import numpy as np
 import PIL.ImageFile as imfile
+import email, smtplib, ssl
 
 
 # load the image file (PIL) and convert to RGB
