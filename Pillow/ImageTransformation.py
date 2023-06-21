@@ -2,7 +2,7 @@
 from PIL import Image, ImageColor as ic
 
 img = Image.open('panda.jpg')
-
+print(type(img))
 # Rotate an Image
 # img.rotate(degree, expand, fillcolor)
 # expand is a boolean argument which checks if the image will be expanded or not

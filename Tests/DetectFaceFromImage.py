@@ -19,5 +19,12 @@ for rect in face_rects:
 
 # Display the image with detected faces
 cv2.imshow('Detected Faces', small_image)
+
+# display the object types
+
+print("small_image: ", type(small_image))
+print("detector: ", type(detector))
+print("face_rects: ", type(face_rects))
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
