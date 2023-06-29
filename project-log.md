@@ -14,3 +14,23 @@
 ---
 *Rate of work being done will help figuring out strategy* 
 ---
+
+
+# Sukanta Work Status
+
+`Libraries to work on`
+
+- [ ] OpenCV
+- [ ]dlib
+- [ ] NumPy
+- [ ] email
+- [ ] smtplib
+
+| Task | Library Used | Testing | Api Addition |
+| ---- | ------------ | ------- | ------------ |
+| Loading an image in numpy array type | PIL | [ ] | [ ] |
+| Face Detection from an image | OpenCV, dlib | [x] | [ ] |
+| Face Landmarks detection from detected face | OpenCV, dlib, Face Recognition Models | [x] | [ ] |
+| Face Encoding | OpenCV, dlib, Face Recognition Models, NumPy | [ ] | [ ] |
+| Euclidean distance of two encoded faces | OpenCV, NumPy  | [ ] | [ ] |
+| Sending email of an Image using Python | OpenCV, smtplib and more... | [ ] | [ ] |
