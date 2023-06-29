@@ -21,7 +21,7 @@
 `Libraries to work on`
 
 - [ ] OpenCV
-- [ ]dlib
+- [ ] dlib
 - [ ] NumPy
 - [ ] email
 - [ ] smtplib
