@@ -3,7 +3,7 @@ import dlib
 import cv2
 import face_recognition_models
 
-# note: OpenCV uses BGR color scheme to process images,
+# note: OpenCV uses BGR color scheme by default to process images,
 # whereas dlib uses RGB, so they are converted as needed to process faces properly
 
 # import the image
