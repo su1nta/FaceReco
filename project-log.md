@@ -33,6 +33,6 @@
 | Loading an image in numpy array type | PIL | [ ] | [ ] |
 | Face Detection from an image | OpenCV, dlib | [x] | [ ] |
 | Face Landmarks detection from detected face | OpenCV, dlib, Face Recognition Models | [x] | [ ] |
-| Face Encoding | OpenCV, dlib, Face Recognition Models, NumPy | [ ] | [ ] |
-| Euclidean distance of two encoded faces | OpenCV, NumPy  | [ ] | [ ] |
+| Face Encoding | OpenCV, dlib, Face Recognition Models, NumPy | [x] | [ ] |
+| Euclidean distance of two encoded faces | OpenCV, NumPy  | [x] | [ ] |
 | Sending email of an Image using Python | OpenCV, smtplib and more... | [ ] | [ ] |
