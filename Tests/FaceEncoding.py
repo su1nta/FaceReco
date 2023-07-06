@@ -5,10 +5,10 @@ import face_recognition_models
 # import Tests.FaceLandmarks      # face landmark detection is already tested in this file
 
 # load the images
-img = cv2.imread('example0.jpg')
+img = cv2.imread('example.jpg')
 
 # resize the image
-img_resized = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
+img_resized = cv2.resize(img, (0, 0), fx=0.50, fy=0.50)
 
 # convert from BGR to RGB
 
@@ -28,7 +28,9 @@ predictor = dlib.shape_predictor(predictor_model)
 landmarks = []
 for face in faces:
     face_landmarks = predictor(img_rgb, face)
-    landmarks.append(face_landmarks.parts())
+    # face_landmarks.parts() is useful if we want to draw the points(facial landmarks) on the face image
+    # the encoder needs the whole object_detection object (without the points list), so the whole object is added as a landmark element
+    landmarks.append(face_landmarks)
 
 # load face encoder
 face_recognition_model = face_recognition_models.face_recognition_model_location()
@@ -37,6 +39,6 @@ face_encoder = dlib.face_recognition_model_v1(face_recognition_model)
 # encode the faces
 encodings = []
 for landmark in landmarks:
+    print(type(landmark))
     encoded_face = face_encoder.compute_face_descriptor(img_rgb, landmark, 1)
     encodings.append(encoded_face)
-
