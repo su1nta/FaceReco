@@ -31,7 +31,7 @@
 There is the main two program which will have the necessary functions to perform the face recognition
 : FaceRecoMain (The main program) and FaceRecoApi (A module that contains the necessary functions)
 
-- FaceRecoMain
+- **FaceRecoMain**
   - import packages : openCV (cv2), numpy, FaceRecoApi
   - capture the face from webcam
   - load known face image locations (numpy array) and face encodings and store them in a function object list
@@ -39,7 +39,7 @@ There is the main two program which will have the necessary functions to perform
   - read a frame from the capture. A frame is a still image from the video
   - if the frame will be processed:
     - resize the frame to 1/4th size for faster search preocess
-    - convert the image from BGR to RGB (Not sure if useful or not)
+    - convert the image from BGR to RGB
     - genetate face locations: find the face (numpy array) and face encodings from the current frame
     - compare the found faces with known faces
     - retrieve the name if the face is recognized
@@ -54,7 +54,7 @@ There is the main two program which will have the necessary functions to perform
 
     - `There will be some addition of the steps according to the changes in the FaceRecoApi section`
 
-- FaceRecoApi
+- **FaceRecoApi**
   - import packages: Python Image Library(PIL), dlib, numpy, trained face recognition models
   - load the image file
   - detect faces in the image
@@ -64,25 +64,31 @@ There is the main two program which will have the necessary functions to perform
   - compare by distance and return list with distances and name if face is matched
 
   - `some addition to the project:`
-    - the unrecognized faces will be e-mailed to a specific e-mail id once
+    - e-mail the unrecognized faces to a specific e-mail id once
+      - there will be a separate directory to identify the unknown faces so no resending the same unknown face
+    - there will be a separate program to add and delete known faces
+      - a directory containing face images
+        - name convention: {index_no}+image.extension
+      - a file containing face names (same order as face images)
+        - name convention: name according to the index no in the face images directory
+      - the program will have two flags --add to add images and --delete images
 
 ---
 
-## Models used to recognize faces
+## Models used to recognize faces (imported trained models from face_recognition_models)
 
-- import face_recognition_models
-- face_recognition_model_location()
+- **Detect faces**: face_recognition_model_location()
   - dlib_face_recognition_resent_model_v1.dat
-- pose_predictor_five_point_model_location()
-  - shape_predictor_5_face_landmarks.dat
-- pose_predictor_model_location
-  - shape_predictor_68_face_landmarks
+- **Get face landmarks**: pose_predictor_model_location()
+  - shape_predictor_68_face_landmarks.dat
+- **Encode the faces**: face_recognition_model_location()
+  - dlib_face_recognition_resnet_model_v1.dat
 
 ---
 
 ## Important Videos and Blogs for concept clearing
 
-- Python functions are first class objects and can be assigned to another object/variable
+- Python functions are first class objects and can be referenced to another object/variable
   - for example there is a following code: 
 
 ```python

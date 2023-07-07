@@ -1,15 +1,16 @@
 # import image module
 from PIL import Image
-
+import cv2
+import numpy as np
 # # import an image
-# img = Image.open('panda.jpg')
-# # show that image
-# img.show('Panda')
+img = Image.open('panda.jpg')
+# show that image
+img.show('Panda')
 
 # alternative way to import an image
-with Image.open('panda.jpg') as pandaimg:
-    print(type(pandaimg))
-    # pandaimg.show()
+# with Image.open('panda.jpg') as pandaimg:
+#     print(type(pandaimg))
+#     # pandaimg.show()
 
 # create an image object
 # Image.new(format, dimension)  where format is 'RGBA', 'CMYK' etc and dimension is (w, h)
