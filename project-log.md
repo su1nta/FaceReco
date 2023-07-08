@@ -22,17 +22,19 @@
 
 ## Libraries to work on
 
-- [ ] OpenCV
-- [ ] dlib
+- [x] OpenCV
+- [x] dlib
 - [ ] NumPy
+- [x] PIL
 - [ ] email
 - [ ] smtplib
 
 | Task | Library Used | Testing | Api Addition |
 | ---- | ------------ | ------- | ------------ |
-| Loading an image in numpy array type | PIL | [ ] | [ ] |
-| Face Detection from an image | OpenCV, dlib | [x] | [ ] |
-| Face Landmarks detection from detected face | OpenCV, dlib, Face Recognition Models | [x] | [ ] |
-| Face Encoding | OpenCV, dlib, Face Recognition Models, NumPy | [x] | [ ] |
-| Euclidean distance of two encoded faces | OpenCV, NumPy  | [x] | [ ] |
+| Loading an image in numpy array type  `Not Needed` | PIL | [ ] | [ ] |
+| Face Detection from an image | OpenCV, dlib | [x] | [x] |
+| Face Landmarks detection from detected face | OpenCV, dlib, Face Recognition Models | [x] | [x] |
+| Face Encoding | OpenCV, dlib, Face Recognition Models, NumPy | [x] | [x] |
+| Euclidean distance of two encoded faces | OpenCV, NumPy  | [x] | [x] |
 | Sending email of an Image using Python | OpenCV, smtplib and more... | [ ] | [ ] |
+| Add and Delete Known Faces in a directory | sys, PIL, OpenCV | [ ] | [ ]
