@@ -37,4 +37,4 @@
 | Face Encoding | OpenCV, dlib, Face Recognition Models, NumPy | [x] | [x] |
 | Euclidean distance of two encoded faces | OpenCV, NumPy  | [x] | [x] |
 | Sending email of an Image using Python | OpenCV, smtplib and more... | [ ] | [ ] |
-| Add and Delete Known Faces in a directory | sys, PIL, OpenCV | [ ] | [ ]
+| Add and Delete Faces in a directory | sys, PIL, OpenCV | [ ] | [ ]

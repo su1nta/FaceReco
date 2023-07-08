@@ -66,8 +66,8 @@ There is the main two program which will have the necessary functions to perform
   - `some addition to the project:`
     - e-mail the unrecognized faces to a specific e-mail id once
       - there will be a separate directory to identify the unknown faces so no resending the same unknown face
-    - there will be a separate program to add and delete known faces
-      - a directory containing face images
+    - there will be a separate program to add and delete faces
+      - two directories containing face images: known_faces and unknown_faces
         - name convention: {index_no}+image.extension
       - a file containing face names (same order as face images)
         - name convention: name according to the index no in the face images directory

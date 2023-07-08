@@ -3,13 +3,13 @@ import cv2
 import PIL.Image as pim
 import dlib
 import numpy as np
-import face_recognition_models
+import face_recognition_models as frm
 
 # load necessary face_recognition models
 face_detector = dlib.get_frontal_face_detector()                        # face detector
-face_landmark_model = face_recognition_models.pose_predictor_model_location()
+face_landmark_model = frm.pose_predictor_model_location()
 face_landmark_predictor = dlib.shape_predictor(face_landmark_model)     # 68-point face landmark detector
-face_encoder_model = face_recognition_models.face_recognition_model_location()
+face_encoder_model = frm.face_recognition_model_location()
 face_encoder = dlib.face_recognition_model_v1(face_encoder_model)       # 128D face encoder
 
 # load the image file (PIL) and convert to RGB - not needed in this context
@@ -63,6 +63,11 @@ def compare_faces(encoded_faces, known_encoded_faces):
 
     return face_matches
 
+
 # mail unknown faces once to a specified email
-def mail_unknown_faces(unknown_faces):
+def mail_unknown_faces(unknown_faces, index):
+    """
+    :param unknown_faces: the path where the unknown faces are stored
+    :param index: index of the latest unknown face
+    """
     pass
