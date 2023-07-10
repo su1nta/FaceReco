@@ -94,7 +94,7 @@ If you are still encountering the issue even after applying the fix, create an i
 
 <br />
 
-### It is still **unclear** why this error was occuring, but it seems to to be fixed for now.
+### It is still **unclear** why this error was occuring and how it is actually solved for now as there were a series of actions taken, but it seems to to be fixed for now. 
 
 <br />
 
