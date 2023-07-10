@@ -79,3 +79,52 @@ There can be two types of ImportError found even after installing dlib
 ---
 
 If you are still encountering the issue even after applying the fix, create an issue in this repo.
+
+---
+
+<br /><br />
+
+## Import Error: site-packages/_dlib_pybind11.cpython-311-x86_64-linux-gnu.so: undefined symbol: dgeqrf\_
+
+<br />
+
+- `IDE`: IDE Independent
+- `OS`: Arch Linux 6.1.33-1-lts
+- `Python Interpreter`: python3.11
+
+<br />
+
+### It is still **unclear** why this error was occuring and how it is actually solved for now as there were a series of actions taken, but it seems to to be fixed for now. 
+
+<br />
+
+## **Fix :**
+  - Install below packages (Command applicable for archlinux)
+
+<br />
+
+  - ```
+      sudo pacman -S cblas lapack
+    ```
+
+<br />
+
+  - go into your project folder if not already there (***recomended to install system packages in another terminal windows to keep things clean and easy to work with***) 
+  
+  <br />
+
+  - **Run :**
+  
+  
+<br />
+
+  - ```
+      pip install --force-reinstall --no-cache-dir -r requirements.txt
+    ```
+
+    <br />
+    - Above command will freshly download all requirements instead of using cached packages. (**this is recomended because just using --force-reinstall may result in installing cached packages**)
+    
+    <br />
+
+  - reactivate venv (**not mandatory**)
