@@ -2,7 +2,7 @@
 import cv2
 
 # load the image
-img_bgr = cv2.imread('example.jpg')
+img_bgr = cv2.imread('example3.jpg')
 img_resized = cv2.resize(img_bgr, (0, 0), fx=0.25, fy=0.25)
 img = cv2.cvtColor(img_resized, cv2.COLOR_BGR2RGB)
 
