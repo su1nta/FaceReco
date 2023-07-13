@@ -67,11 +67,14 @@ There is the main two program which will have the necessary functions to perform
     - e-mail the unrecognized faces to a specific e-mail id once
       - there will be a separate directory to identify the unknown faces so no resending the same unknown face
     - there will be a separate program to add and delete faces
-      - two directories containing face images: known_faces and unknown_faces
+      - two directories containing face images: KnownFaces and UnknownFaces (may not needed)
+      - two directories containing encoded face images: KnownFacesEncoded and UnknownFacesEncoded
+      - name convention: name according to the index no in the face images directory
         - name convention: {index_no}+image.extension
-      - a file containing face names (same order as face images)
-        - name convention: name according to the index no in the face images directory
-      - the program will have two flags --add to add images and --delete images
+    - two json files containing objects which will have: (*filenames:* known_faces.json and unknown_faces.json)
+        - name of the person
+        - path of the raw image
+        - path of the encoded image
 
 ---
 
