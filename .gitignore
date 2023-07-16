@@ -3,3 +3,4 @@
 /.vscode/
 /projectenv/
 /OpenBLAS/
+/FaceRecoApi/__pycache__/
