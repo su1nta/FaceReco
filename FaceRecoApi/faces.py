@@ -10,24 +10,41 @@ class InvalidFlagError(Exception):
     pass
 class InvalidInputError(Exception):
     pass
+class NoFaceFoundError(Exception):
+    pass
 
-# open the json file to add/delete files
-def open_json(value):
+# get the path to the known_faces.json
+def get_json_path():
     # Get the current directory of the script
     current_directory = os.path.dirname(os.path.abspath(__file__))
 
     # Construct the path to "test.file"
-    path = os.path.join(current_directory, '..', 'assets', 'known_faces.json')
+    path = os.path.join(current_directory, '..', 
+                        'assets', 'known_faces.json')
 
-    if value == 0:
-        json_file = open(path, "w")
-    elif value == 1:
-        json_file = open(path, "a")
-    else:
-        json_file = open(path, "r")
-    return path, json_file
+    return path
+
+# list names in known_faces.json
+def list_known_faces(_):
+    path = get_json_path()
+
+    with open(path, "r") as json_read:
+        data = json.load(json_read)
+
+    if len(data) == 0:
+        raise NoFaceFoundError("No known faces")
+
+    print("Known Faces are: ")
+    list = [
+        value for item in data 
+        for key, value in item.items() if key == "Name"
+        ]
+    for name in list:
+        print(name)
 
 # Define functions for each flag
+
+# add a face as known face
 def add_face(param):
     """
         add_face expects one element in param
@@ -38,100 +55,106 @@ def add_face(param):
           the first detected face, so specify the name carefully
     """
 
-    try:
-        print("Adding face...")
+    print("Adding face...")
 
-        # check if path in the param exists
-        if not os.path.exists(param):
-            raise FileNotFoundError
-        file = cv2.imread(param)
+    # check if path in the param exists
+    if not os.path.exists(param):
+        raise FileNotFoundError
+    file = cv2.imread(param)
         
-        # ask to enter the name
-        face_name = None
-        face_name = input("Enter name of the person:")
-        if face_name == None:
-            raise InvalidInputError("Please specify a name") 
+    # ask to enter the name
+    face_name = None
+    face_name = input("Enter name of the person:")
+    if not face_name.strip():
+        raise InvalidInputError("Please specify a name") 
 
-        # detect face in the image
-        face = detect_face(file)
+    # detect face in the image
+    face = detect_face(file)
 
-        # find facial landmarks
-        landmarks = face_landmarks(file, face)
+    # find facial landmarks
+    landmarks = face_landmarks(file, face)
 
-        # encode the face
-        encoded_face = np.array(face_encode(file, landmarks))
-        encoded_face = encoded_face.tolist()
+    # encode the face
+    encoded_face = np.array(face_encode(file, landmarks))
+    encoded_face = encoded_face.tolist()
 
-        print("Face encoded successfully")
+    # if no face is detected, no face will be encoded
+    if len(encoded_face) == 0:
+        raise NoFaceFoundError("No face found")
 
-        # open the json file
-        path, json_file = open_json(1)
+    print("Face encoded successfully")
 
-        # add the encoding in json
-        data = {
-            "Name": face_name,
-            "Encoding": encoded_face[0]
-        }
+    # add the encoding in json
+    data = {
+        "Name": face_name,
+        "Encoding": encoded_face[0]
+    }
 
-        # check if json file is empty
-        if os.stat(path).st_size == 0:
-            json_file.write("[\n")
-        if os.stat(path).st_size == 2:
-            with open(path, "ab") as json_truncate:
-                json_truncate.seek(-1, 2)
-                json_truncate.truncate()
-                json_truncate.truncate()
-        else:
-            with open(path, "ab") as json_truncate:
-                json_truncate.seek(-1, 2)
-                json_truncate.truncate()
-            json_file.write(",\n")
+    # get file path of the json file
+    path = get_json_path()
 
-        # serialize face data in json file
-        json.dump(data, json_file, indent=4, separators=(',', ':'))
-        json_file.write("\n]")
-        print("Face data added successfully.")
-        print("Person recognized as: ", face_name)
+    # open json files
+    json_append = open(path, "a")
+    json_truncate = open(path, "ab")
 
-        # close the file
-        json_file.close()
+    # check if json file is empty
+    if os.stat(path).st_size == 0:
+        json_append.write("[\n")
+    if os.stat(path).st_size == 2:
+        json_truncate.seek(-1, 2)
+        json_truncate.truncate()
+        json_truncate.truncate()
+    else:
+        json_truncate.seek(-1, 2)
+        json_truncate.truncate()
+        json_append.write(",\n")
 
-    except FileNotFoundError as e:
-        print(str(e))
-        sys.exit(1)
-    except InvalidInputError as e:
-        print(str(e))
-        sys.exit(1)
+    # serialize face data in json file
+    json.dump(data, json_append, indent=4, separators=(',', ':'))
+    json_append.write("\n]")
+    print("Face data added successfully.")
+    print("Person recognized as: ", face_name)
 
+    # close json files
+    json_append.close()
+    json_truncate.close()
+
+
+# delete a known face
 def delete_face(name):
     """
         delete_face expects one element in param
         - the exact name of the person whose data will be deleted
 
     """
+
     print("Deleting face", name,"...")
 
-    path, json_fetch = open_json(2)
+    # get file path of the json file
+    path = get_json_path()
+
     if os.stat(path).st_size == 2:
         print("No faces to delete")
         return
 
-    data = json.load(json_fetch)
-    json_fetch.close()
+    with open(path, "r") as json_read:
+        data = json.load(json_read)
 
-    data = [item for item in data if item.get("Name") != name]
+    new_data = [item for item in data if item.get("Name") != name]
+    if new_data == data:
+        raise NoFaceFoundError("No face found named", name)
 
-    path, json_del = open_json(0)
-    json.dump(data, json_del, indent=4)
-    print("Deleted face successfully")
-    json_del.close()
+    with open(path, "w") as json_write:
+        json.dump(new_data, json_write, indent=4)
+        print("Deleted face successfully")
 
 # execute flag action
 def execute_flag(flag, param):
     # Define flag-function mapping
     flag_actions = {
         '-a': add_face,
-        '-d': delete_face
+        '-d': delete_face,
+        '-l': list_known_faces
     }
 
     if flag in flag_actions:
@@ -139,11 +162,13 @@ def execute_flag(flag, param):
     elif flag == "-ad":
         raise InvalidFlagError("You can do one task at a time")
     elif flag == None:
-        raise InvalidFlagError("Please enter a flag. -a to add faces, -d to delete faces")
+        raise InvalidFlagError(
+            "Please enter a flag: -a to add faces, -d to delete faces"
+            )
     else:
         raise InvalidFlagError("Invalid Flag")
 
-# Process the arguments
+# Process the arguments - separate the flag and specified path/name
 def process_arguments(arguments):
     for arg in arguments:
         if arg.startswith('-'):
@@ -151,11 +176,27 @@ def process_arguments(arguments):
         else:
             param = arg
 
+    # if just list the known faces no parameter is required
+    if flag == '-l':
+        param = " "
+
     return flag, param
 
 def main(arguments):
-    flag, param = process_arguments(arguments)
-    execute_flag(flag, param)
+    try:
+        flag = None 
+        param = None
+        flag, param = process_arguments(arguments)
+        execute_flag(flag, param)
+    except InvalidFlagError as e:
+        print(str(e))
+    except FileNotFoundError as e:
+        print(str(e))
+    except InvalidInputError as e:
+        print(str(e))
+    except NoFaceFoundError as e:
+        print(str(e))
+    
 
 if __name__ == "__main__":
     arguments = sys.argv[1:]
