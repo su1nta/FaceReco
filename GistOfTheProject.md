@@ -63,18 +63,21 @@ There is the main two program which will have the necessary functions to perform
   - get euclidean distance of the detected face and known faces
   - compare by distance and return list with distances and name if face is matched
 
-  - `some addition to the project:`
-    - e-mail the unrecognized faces to a specific e-mail id once
-      - there will be a separate directory to identify the unknown faces so no resending the same unknown face
-    - there will be a separate program to add and delete faces
-      - two directories containing face images: KnownFaces and UnknownFaces (may not needed)
-      - two directories containing encoded face images: KnownFacesEncoded and UnknownFacesEncoded
+  - e-mail the unrecognized faces to a specific e-mail id once
+    - there will be a separate directory to identify the unknown faces so no resending the same unknown face
+      - identify unknown faces:
+        - the face comparision(compare_faces) returns a list containing if the face is recognized or not(true or false)
+        - faces that are not recognized will remain in the same index position as the face detection list
+        - the unknown face will be cropped from the original image with the help of coordinates found on the face detection list
+        - then the cropped new image will be sent as email
+  - there will be a separate program to add and delete faces
+    - two directories containing face images: KnownFaces and UnknownFaces (may not needed)
+    - two directories containing encoded face images: KnownFacesEncoded and UnknownFacesEncoded
       - name convention: name according to the index no in the face images directory
-        - name convention: {index_no}+image.extension
-    - two json files containing objects which will have: (*filenames:* known_faces.json and unknown_faces.json)
-        - name of the person
-        - path of the raw image
-        - path of the encoded image
+      - name convention: {index_no}+image.extension
+  - two json files containing objects which will have: (*filenames:* known_faces.json and unknown_faces.json)
+    - name of the person
+    - the encoded image
 
 ---
 
