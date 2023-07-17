@@ -24,10 +24,11 @@
 
 - [x] OpenCV
 - [x] dlib
-- [ ] NumPy
+- [x] NumPy
 - [x] PIL
-- [ ] email
-- [ ] smtplib
+- [x] email
+- [x] smtplib
+- [x] json
 
 | Task | Library Used | Testing | Api Addition |
 | ---- | ------------ | ------- | ------------ |
@@ -36,5 +37,5 @@
 | Face Landmarks detection from detected face | OpenCV, dlib, Face Recognition Models | [x] | [x] |
 | Face Encoding | OpenCV, dlib, Face Recognition Models, NumPy | [x] | [x] |
 | Euclidean distance of two encoded faces | OpenCV, NumPy  | [x] | [x] |
-| Sending email of an Image using Python | OpenCV, smtplib and more... | [ ] | [ ] |
-| Add and Delete Faces in a directory | sys, PIL, OpenCV | [ ] | [ ]
+| Sending email of an Image using Python | OpenCV, smtplib and more... | [x] | [x] |
+| Add and Delete Faces in a json file | sys, os, numpy, json, FaceRecoApi | [x] | [x]
