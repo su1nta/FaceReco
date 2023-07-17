@@ -2,7 +2,8 @@ import dlib
 import cv2
 
 # Load the image
-image = cv2.imread('example.jpg')
+path = input("Enter the path of the image: ")
+image = cv2.imread(path)
 
 # resize the image
 small_image = cv2.resize(image, (0, 0), fx=0.50, fy=0.50)

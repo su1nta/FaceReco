@@ -15,8 +15,12 @@ data["Roll"] = int(input("Enter Roll No: "))
 #     print(key,": ",value)
 
 # dump/seralize a data in a json file
+
 path = "Tests/json_data/test.json"
 
+# open json file pointers
+# fp(json file as append mode)
+# fp_truncate(json file as append binary mode)
 if os.path.exists(path):
     fp = open(path, "a")
     fp_truncate = open(path, "ab")
@@ -24,15 +28,8 @@ if os.path.exists(path):
 else:
     print(path+" doesn't exist")
 
-# write data
-# data = {
-#         "Name": "Sukanta",
-#         "Course": "Bsc CS",
-#         "Sem": "6",
-#         "Roll": "200474"
-#     }
-
 # check if the file is empty
+# this block is to manage the basic syntax of the json file
 if os.stat(path).st_size == 0:
     print("File is empty. dumping...")
     fp.write("[\n")
