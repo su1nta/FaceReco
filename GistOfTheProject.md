@@ -55,8 +55,6 @@ There is the main two program which will have the necessary functions to perform
     - release the capture
     - destroy the resulting window
 
-    - `There will be some addition of the steps according to the changes in the FaceRecoApi section`
-
 - **FaceRecoApi**
   - import packages: Python Image Library(PIL), dlib, numpy, trained face recognition models
   - load the image file
