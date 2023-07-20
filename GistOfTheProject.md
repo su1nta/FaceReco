@@ -49,7 +49,7 @@ There is the main two program which will have the necessary functions to perform
     - set process this frame to false : stop processing the frame anymore
     - Display the results : if the face is detected and recognized or not
       - draw a rectangle around the face `(cv2.rectangle)`
-      - display a label with a name if the face is recognized (see `Tests/LoadingWindowWithImage.py`)
+      - display a label with a name if the face is recognized
       - display the resulting image in the webcam
       - if exit key is pressed, exit from the loop
     - release the capture
