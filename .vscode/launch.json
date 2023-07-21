@@ -12,7 +12,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "env":{
-                "LD_LIBRARY_PATH": "/usr/local/lib"
+                "LD_LIBRARY_PATH": "../venv/lib/"
             }
         }
     ]
