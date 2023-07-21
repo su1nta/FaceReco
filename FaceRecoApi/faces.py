@@ -33,14 +33,16 @@ def list_known_faces(_):
 
     if len(data) == 0:
         raise NoFaceFoundError("No known faces")
-
+    # print(data)
     print("Known Faces are: ")
     list = [
-        value for item in data 
+        value for item in data
         for key, value in item.items() if key == "Name"
         ]
+    # print(list)
     for name in list:
         print(name)
+    
 
 # Define functions for each flag
 

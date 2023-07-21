@@ -33,22 +33,22 @@ There is the main two program which will have the necessary functions to perform
 
 - **FaceRecoMain**
   - import packages : openCV (cv2), numpy, FaceRecoApi
-  - capture the face from webcam `(cv2.videoCapture())`
-  - load known face encodings and store them in a list (from json file, see `Tests/JsonHandling.py` or `FaceRecoApi/faces.py`)
-  - initialize a variable to determine process this frame or not (process_this_frame = true)
+  - capture the face from webcam **`(cv2.videoCapture())`**
+  - load known face encodings and store them in a list (from json file, see **`Tests/JsonHandling.py` or `FaceRecoApi/faces.py`)**
+  - initialize a variable to determine process this frame or not **(process_this_frame = true)**
   - read a frame from the capture. A frame is a still image from the video
   - if the frame will be processed:
-    - resize the frame to 1/4th size for faster search preocess `(cv2.resize())`
-    - convert the image from BGR to RGB `(cv2.cvtColor())`
+    - resize the frame to 1/4th size for faster search preocess **`(cv2.resize())`**
+    - convert the image from BGR to RGB **`(cv2.cvtColor())`**
     - genetate face locations: find the face (numpy array) and face encodings from the current frame
-      - detect face `(detect_face)`
-      - find face landmarks `(face_landmarks)`
-      - encode the face `(face_encode)`
-    - compare the found faces with known faces `(compare_faces)`
-    - retrieve the name if the face is recognized (from `known_faces.json`)
+      - detect face **`(detect_face)`**
+      - find face landmarks **`(face_landmarks)`**
+      - encode the face **`(face_encode)`**
+    - compare the found faces with known faces **`(compare_faces)`**
+    - retrieve the name if the face is recognized (from **`known_faces.json`**)
     - set process this frame to false : stop processing the frame anymore
     - Display the results : if the face is detected and recognized or not
-      - draw a rectangle around the face `(cv2.rectangle)`
+      - draw a rectangle around the face **`(cv2.rectangle)`**
       - display a label with a name if the face is recognized
       - display the resulting image in the webcam
       - if exit key is pressed, exit from the loop
