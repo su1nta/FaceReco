@@ -57,7 +57,7 @@ def compare_faces(encoded_faces, known_encoded_faces):
     known_index = []
     tolerance = 0.6
     for encoded_face in encoded_faces:
-        compare_distance = np.linalg.norm(encoded_face - known_encoded_faces, axis=1)
+        compare_distance = np.linalg.norm(known_encoded_faces - encoded_face, axis=1)
         # print(compare_distance)
         
         temp = 0 
