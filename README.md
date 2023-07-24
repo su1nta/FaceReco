@@ -20,7 +20,7 @@
 1. FaceReco can do three main things:
     - Facereco can detect faces shown in the camera or webcam in real-time
     - It recognizes known faces. You can add your face by simply adding an image which contains only your face recognize your face and write your specified name under your face
-    - If any unknown face is detected, it is e-mailed once in your specified email address
+    - `WIP` If any unknown face is detected, it is e-mailed once in your specified email address
 
 <h2>Tech and tools used</h2>
 
@@ -66,16 +66,31 @@
         cd FaceReco
     ```
 
-- run `dependencies.sh`
+- run `setup.sh`
 
     ```bash
-        chmod +x dependencies.sh
-        ./dependencies.sh
+        ./setup.sh
     ```
 
 <h2>Usage</h2>
 
-- Run Face Recognition using your webcam
+- Use the main script (Recommended)
+  - run `run.sh`
+    
+    ```bash
+        ./run.sh
+    ```
+
+    `run.sh` has 5 options: <br/>
+    **(1)** Run Face Recognition <br/>
+    **(2)** Add new face <br/>
+    **(3)** See all listed faces <br/>
+    **(4)** Delete a face <br/>
+    **(5)** Exit <br/>
+
+    Select what you wanna do
+
+- Run Face Recognition manually using your webcam
   - run `FaceRecoMain.py`
 
     ```bash
