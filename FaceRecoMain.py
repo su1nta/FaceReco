@@ -119,6 +119,18 @@ while capture_face_from_webcam:
                             cv.putText(flipped_frame, name, (known_face.left() + 5, 
                                                             known_face.bottom() + 35), 
                                         font, font_scale, font_color, font_thickness)
+                else:
+                    for face in faces:
+                        cv.rectangle(flipped_frame, (face.left(), face.top()), 
+                                        (face.right(), face.bottom()), 
+                                        (255, 0, 0), 2)
+                        cv.rectangle(flipped_frame, 
+                                            (face.left(), face.bottom()),
+                                            (face.right(), face.bottom() + 50),
+                                            (255, 0, 0), cv.FILLED)
+                        cv.putText(flipped_frame, 'No Face Added', (face.left() + 5, 
+                                                                face.bottom() + 35), 
+                                            font, font_scale, (255,255,255), font_thickness)
                 if len(unmatched_faces_indexes) > 0:
                     for index in unmatched_faces_indexes:
                         unknown_face = faces[index]
