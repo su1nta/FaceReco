@@ -5,8 +5,8 @@ import numpy as np
 import face_recognition_models
 
 # load and resize two images
-img1 = cv2.imread('compare1.jpg')
-img2 = cv2.imread('compare2.jpg')
+img1 = cv2.imread('compare2.jpg')
+img2 = cv2.imread('compare22.jpg')
 
 # img1_resized = cv2.resize(img1, (0, 0), fx=0.5, fy=0.5)
 # img2_resized = cv2.resize(img2, (0, 0), fx=0.5, fy=0.5)
