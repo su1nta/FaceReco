@@ -1,7 +1,10 @@
 #! /bin/bash
 
 
+source venv/bin/./activate
+
 # Decalring all global variables
+count=0
 run_loop=true
 start_time=$(date +%s)      # Storing starting timestamp
 
@@ -43,16 +46,22 @@ run_face_recognition() {
     ((ran_face_recognition += 1))
     echo_instructions
     echo "Running Face Recognition..."
-    # python FaceRecoMain.py
-    # Add your face recognition code here
+    python FaceRecoMain.py
+    clear
+    echo_instructions
 }
 
 # Function to add a new face
 add_new_face() {
     ((ran_add_face += 1))
     echo_instructions
-    echo "Adding New Face..."
-    # Add your code to add a new face here
+
+    cd FaceRecoApi
+    custom_command="python faces.py -a "
+    echo "press tab to search for the file"
+    read -e -i "$custom_command" modified_command
+    eval "$modified_command"
+    cd ../
 }
 
 # Function to see all listed faces
@@ -60,14 +69,22 @@ see_all_faces() {
     ((ran_list_all_faces += 1))
     echo_instructions
     echo "Listing All Faces..."
+    cd FaceRecoApi
+    python faces.py -l
+    cd ../
     # Add your code to display all listed faces here
 }
 
 # Function to delete a face
 delete_face() {
-    ((ran_delete_face += 1))
+    ((ran_delete_face++))
     echo_instructions
-    echo "Deleting a Face..."
+    cd FaceRecoApi
+    custom_command="python faces.py -d "
+    echo "write the name of the face you want to delete at the end"
+    read -e -i "$custom_command" modified_command
+    eval "$modified_command"
+    cd ../
     # Add your code to delete a face here
 }
 
@@ -77,15 +94,19 @@ echo_instructions() {
     echo "2. Add new Face"
     echo "3. See All listed faces"
     echo "4. Delete a Face"
-    echo "5. Exit"
+    echo "5. Clear the sceen"
+    echo "q. Quit the program"
     echo -e "\n\t"
 }
 
 # Main function to present the options and call corresponding functions
 main() {
-    
-    clear
-    echo_instructions
+    if [ "$count" -eq 0 ]; then
+        clear
+        echo_instructions
+    fi
+
+
     read -p "Enter your choice (1-5): " choice
 
     case $choice in
@@ -106,8 +127,13 @@ main() {
             delete_face
             ;;
         5)
+            clear
+            echo_instructions
+            ;;
+        q)
             run_loop=false
             clear
+            deactivate
             echo_instructions
             echo "Program terminated..."
             run_status
@@ -124,5 +150,6 @@ main() {
 while $run_loop
 do
     main
+    ((count++))
 done
 
