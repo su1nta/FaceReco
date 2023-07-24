@@ -21,7 +21,7 @@ face_encoder = dlib.face_recognition_model_v1(face_encoder_model)       # 128D f
 
 # detect faces in an image
 def detect_face(frame):
-    faces = face_detector(frame, 0)
+    faces = face_detector(frame, 1)
     return faces
 
 
@@ -53,16 +53,29 @@ def face_encode(frame, landmarks):
 # compare known faces and detected and encoded faces
 def compare_faces(encoded_faces, known_encoded_faces):
     face_matches = []
-    tolerance = 0.5
+    compare_distance = []
+    known_index = []
+    tolerance = 0.6
     for encoded_face in encoded_faces:
-        compare_distance = np.linalg.norm(known_encoded_faces - encoded_face, axis=1)
-        if compare_distance <= tolerance:
+        compare_distance = np.linalg.norm(encoded_face - known_encoded_faces, axis=1)
+        # print(compare_distance)
+        
+        temp = 0 
+        index = 0
+        for each in compare_distance:   
+            if each <= tolerance:
+                known_index.append(index)
+                temp = 1
+            index += 1
+            # else:
+            #     face_matches.append(False)
+        if temp == 1:
             face_matches.append(True)
         else:
             face_matches.append(False)
 
-    return face_matches
 
+    return face_matches,known_index
 
 # mail unknown faces once to a specified email
 def mail_unknown_faces(unknown_faces, index):
