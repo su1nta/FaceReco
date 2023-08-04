@@ -14,19 +14,24 @@ class NoFaceFoundError(Exception):
     pass
 
 # get the path to the known_faces.json
-def get_json_path():
+def get_json_path(status):
     # Get the current directory of the script
     current_directory = os.path.dirname(os.path.abspath(__file__))
 
     # Construct the path to "test.file"
-    path = os.path.join(current_directory, '..', 
-                        'assets', 'known_faces.json')
+    if status == 'k':
+        path = os.path.join(current_directory, '..', 
+                            'assets', 'known_faces.json')  
+    elif status == 'u':
+        path = os.path.join(current_directory, '..', 
+                            'assets', 'unknown_faces.json')
 
     return path
 
 # list names in known_faces.json
-def list_known_faces(_):
-    path = get_json_path()
+def list_known_faces():
+    status = 'k'
+    path = get_json_path(status)
 
     with open(path, "r") as json_read:
         data = json.load(json_read)
@@ -47,7 +52,7 @@ def list_known_faces(_):
 # Define functions for each flag
 
 # add a face as known face
-def add_face(param):
+def add_face(param, status):
     """
         add_face expects one element in param
         - the path of the image that will be added
@@ -65,35 +70,41 @@ def add_face(param):
     file = cv2.imread(param)
         
     # ask to enter the name
-    face_name = None
-    face_name = input("Enter name of the person:")
-    if not face_name.strip():
-        raise InvalidInputError("Please specify a name") 
+    if status == 'k':
+        face_name = None
+        face_name = input("Enter name of the person:")
+        if not face_name.strip():
+            raise InvalidInputError("Please specify a name")
 
-    # detect face in the image
-    face = detect_face(file)
+        # detect face in the image
+        face = detect_face(file)
 
-    # find facial landmarks
-    landmarks = face_landmarks(file, face)
+        # find facial landmarks
+        landmarks = face_landmarks(file, face)
 
-    # encode the face
-    encoded_face = np.array(face_encode(file, landmarks))
-    encoded_face = encoded_face.tolist()
+        # encode the face
+        encoded_face = np.array(face_encode(file, landmarks))
+        encoded_face = encoded_face.tolist()
 
-    # if no face is detected, no face will be encoded
-    if len(encoded_face) == 0:
-        raise NoFaceFoundError("No face found")
+        # if no face is detected, no face will be encoded
+        if len(encoded_face) == 0:
+            raise NoFaceFoundError("No face found")
 
-    print("Face encoded successfully")
+        print("Face encoded successfully")
 
-    # add the encoding in json
-    data = {
-        "Name": face_name,
-        "Encoding": encoded_face[0]
-    }
+        # add the encoding in json
+        data = {
+            "Name": face_name,
+            "Encoding": encoded_face[0]
+        }
+    elif status == 'u':
+        data = {
+            "Encoding": encoded_face[0]
+        }
 
     # get file path of the json file
-    path = get_json_path()
+    
+    path = get_json_path(status)
 
     # open json files
     json_append = open(path, "a")
@@ -123,7 +134,7 @@ def add_face(param):
 
 
 # delete a known face
-def delete_face(name):
+def delete_face(name, status):
     """
         delete_face expects one element in param
         - the exact name of the person whose data will be deleted
@@ -133,7 +144,7 @@ def delete_face(name):
     print("Deleting face", name,"...")
 
     # get file path of the json file
-    path = get_json_path()
+    path = get_json_path(status)
 
     if os.stat(path).st_size == 2:
         print("No faces to delete")
@@ -154,13 +165,15 @@ def delete_face(name):
 def execute_flag(flag, param):
     # Define flag-function mapping
     flag_actions = {
-        '-a': add_face,
-        '-d': delete_face,
+        '-a': lambda: add_face(param, 'k'),
+        '-ak': lambda: add_face(param, 'k'),
+        '-au': lambda: add_face(param, 'u'),
+        '-d': lambda: delete_face(param, 'k'),
         '-l': list_known_faces
     }
 
     if flag in flag_actions:
-        flag_actions[flag](param)
+        flag_actions[flag]()
     elif flag == "-ad":
         raise InvalidFlagError("You can do one task at a time")
     elif flag == None:
