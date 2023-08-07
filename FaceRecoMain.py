@@ -26,8 +26,8 @@ window_name = 'FaceReco'
 cv.namedWindow(window_name, cv.WINDOW_NORMAL)
 
 # set desired window size
-window_width = 1920
-window_height = 1080
+window_width = 640
+window_height = 480
 cv.resizeWindow(window_name, window_width, window_height)
 
 # capturing from webcam
@@ -68,7 +68,7 @@ while capture_face_from_webcam:
                 # Comparing faces
                 face_matches = []
                 known_faces_index = []
-                matched_faces,unmatched_faces = api.compare_faces(detected_faces,
+                matched_faces,unmatched_faces, unmatched_encodings = api.compare_faces(detected_faces,
                                                                 encoded_faces)
 
                 # show the matched faces and their names, unknown faces in the frame
@@ -78,7 +78,6 @@ while capture_face_from_webcam:
                     for matched_name, matched_face in matched_faces.items():
                         known_name = matched_name
                         known_face = matched_face
-                        print(known_name)
                         cv.rectangle(flipped_frame, 
                                     (known_face.left(), known_face.top()), 
                                     (known_face.right(), known_face.bottom()), 
@@ -91,6 +90,7 @@ while capture_face_from_webcam:
                                                         known_face.bottom() + 35), 
                                     font, font_scale, font_color, font_thickness)
                 elif len(unmatched_faces) > 0:
+                    api.process_unknown_faces(flipped_frame, unmatched_faces, unmatched_encodings)
                     for unknown_face in unmatched_faces:
                         cv.rectangle(flipped_frame,
                                     (unknown_face.left(), unknown_face.top()),

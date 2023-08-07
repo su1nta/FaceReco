@@ -71,6 +71,8 @@ def compare_faces(detected_faces, encoded_faces):
     # dictionary and list which will contain matched and unmatched faces
     matched_faces = {}
     unmatched_faces = []
+    # a list containing encodings of unmatched faces
+    unmatched_encodings = []
 
     # list which will contain euclidean distance between
     # a detected face and known encoded faces
@@ -97,15 +99,7 @@ def compare_faces(detected_faces, encoded_faces):
                 matched_faces[fetched_name] = detected_faces[index]
             else:
                 unmatched_faces.append(detected_faces[index])
+                unmatched_encodings.append(encoded_face)
         index += 1
 
-    return matched_faces, unmatched_faces
-
-
-# mail unknown faces once to a specified email
-def mail_unknown_faces(unknown_faces, index):
-    """
-    :param unknown_faces: the path where the unknown faces are stored
-    :param index: index of the latest unknown face
-    """
-    pass
+    return matched_faces, unmatched_faces, unmatched_encodings
