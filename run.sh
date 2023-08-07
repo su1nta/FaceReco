@@ -91,10 +91,10 @@ delete_face() {
 echo_instructions() {
     echo "Please select an option:"
     echo "1. Run Face Recognition"
-    echo "2. Add new Face"
-    echo "3. See All listed faces"
-    echo "4. Delete a Face"
-    echo "5. Clear the sceen"
+    echo "2. Add a new Face"
+    echo "3. See All known faces"
+    echo "4. Delete a Known Face"
+    echo "5. Clear the current screen"
     echo "q. Quit the program"
     echo -e "\n\t"
 }

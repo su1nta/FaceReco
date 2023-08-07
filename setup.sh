@@ -47,5 +47,40 @@ else
 
     sleep 1
 
-    echo ",,,Exiting,,,"
 fi
+
+
+#Installing OPENBLAS
+
+if [ -d "OpenBLAS" ]; then
+    
+	echo -e "OPENBLAS ALREADY INSTALLED\nSkipping..."
+else
+    echo -e "Installing OpenBLAS....\n"
+
+    git clone https://github.com/xianyi/OpenBLAS.git
+
+    cd OpenBLAS
+
+    make
+
+    sudo make PREFIX=/usr/local/lib install
+
+    cd ..
+fi
+
+# Adding OPENBLAS to path
+line_to_check='export LD_LIBRARY_PATH="/usr/local/lib:PATH"'
+
+bashrc_file="$HOME/.bashrc"
+if grep -qF "$line_to_check" "$bashrc_file"; then
+    # echo "The line already exists in $bashrc_file."
+    echo -e "OPENBLAS path already exist in ~/.bashrc\nSkipping"
+else
+    echo -e "The OPENBLAS path does not exist in $bashrc_file.\nAdding...."
+    echo -e "\nexport LD_LIBRARY_PATH=\"/usr/local/lib:PATH\"" >> ~/.bashrc
+fi
+
+
+
+echo ",,,Exiting,,,"
