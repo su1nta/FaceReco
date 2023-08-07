@@ -68,6 +68,22 @@ def add_face(param, status):
     if not os.path.exists(param):
         raise FileNotFoundError
     file = cv2.imread(param)
+
+    # detect face in the image
+    face = detect_face(file)
+
+    # find facial landmarks
+    landmarks = face_landmarks(file, face)
+
+    # encode the face
+    encoded_face = np.array(face_encode(file, landmarks))
+    encoded_face = encoded_face.tolist()
+
+    # if no face is detected, no face will be encoded
+    if len(encoded_face) == 0:
+        raise NoFaceFoundError("No face found")
+
+    print("Face encoded successfully")
         
     # ask to enter the name
     if status == 'k':
@@ -75,22 +91,6 @@ def add_face(param, status):
         face_name = input("Enter name of the person:")
         if not face_name.strip():
             raise InvalidInputError("Please specify a name")
-
-        # detect face in the image
-        face = detect_face(file)
-
-        # find facial landmarks
-        landmarks = face_landmarks(file, face)
-
-        # encode the face
-        encoded_face = np.array(face_encode(file, landmarks))
-        encoded_face = encoded_face.tolist()
-
-        # if no face is detected, no face will be encoded
-        if len(encoded_face) == 0:
-            raise NoFaceFoundError("No face found")
-
-        print("Face encoded successfully")
 
         # add the encoding in json
         data = {

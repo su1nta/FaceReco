@@ -94,7 +94,6 @@ def compare_faces(detected_faces, encoded_faces):
                     break
 
             if temp == 1:       # matched faces found
-                print("fetched name: ",fetched_name)
                 matched_faces[fetched_name] = detected_faces[index]
             else:
                 unmatched_faces.append(detected_faces[index])
