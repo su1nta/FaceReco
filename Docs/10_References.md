@@ -1,0 +1,12 @@
+# References
+- Official Face Recognition package by Adam Geitgey
+    - This official Python package is a major inspiration behind this project. The pre-trained face-recognition models as well as some ML coding practices are referenced from this package
+- Official Website of Dlib
+    - dlib face recognition models and functions to access them to get optimal results are referenced from this website
+- Official Website of OpenCV
+    - from webcam recording to storing unknown images are referenced from this website
+- Real Python Website
+    - The realpython.com is another major reference for this project
+    - Simple SMTP mailing with TLS security is referenced from this website
+- FreeCodeCamp
+    - FreeCodeCamp has been a reference to set up proper development environment for python programming in Virtual Environment
