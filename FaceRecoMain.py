@@ -21,6 +21,15 @@ font_thickness = 1
 process_count = 0
 n = 5
 
+# set the named window
+window_name = 'FaceReco'
+cv.namedWindow(window_name, cv.WINDOW_NORMAL)
+
+# set desired window size
+window_width = 1920
+window_height = 1080
+cv.resizeWindow(window_name, window_width, window_height)
+
 # capturing from webcam
 capture_face_from_webcam = True
 capture = cv.VideoCapture(0)
@@ -108,7 +117,7 @@ while capture_face_from_webcam:
         process_count = 0          
 
     # show the processed or unprocessed frame
-    cv.imshow('Flipped Frame', flipped_frame)
+    cv.imshow(window_name, flipped_frame)
 
     # if key 'q' is pressed it will stop capturing from the webcam
     if cv.waitKey(1) & 0xFF == ord('q'):
