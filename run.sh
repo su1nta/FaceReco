@@ -1,6 +1,5 @@
 #! /bin/bash
 
-
 source venv/bin/./activate
 
 # Decalring all global variables
@@ -56,12 +55,14 @@ add_new_face() {
     ((ran_add_face += 1))
     echo_instructions
 
-    cd FaceRecoApi
+    echo -e "USAGE :\n\tTo add a new known face : python faces.py -a <image_path>\n \tOR"
+    echo -e "\tpython faces.py -ak <image_path>\n"
+    echo -e "\tTo add a new unknown face :  python faces.py -au <image_path>\n"
     custom_command="python faces.py -a "
-    echo "press tab to search for the file"
+    echo -e "\tpress tab to search for the file"
+    echo -e "\n|---------------------------------------------|\n"
     read -e -i "$custom_command" modified_command
     eval "$modified_command"
-    cd ../
 }
 
 # Function to see all listed faces
@@ -69,9 +70,7 @@ see_all_faces() {
     ((ran_list_all_faces += 1))
     echo_instructions
     echo "Listing All Faces..."
-    cd FaceRecoApi
     python faces.py -l
-    cd ../
     # Add your code to display all listed faces here
 }
 
@@ -79,16 +78,24 @@ see_all_faces() {
 delete_face() {
     ((ran_delete_face++))
     echo_instructions
-    cd FaceRecoApi
     custom_command="python faces.py -d "
     echo "write the name of the face you want to delete at the end"
+    echo -e "\n|---------------------------------------------|\n"
     read -e -i "$custom_command" modified_command
     eval "$modified_command"
-    cd ../
     # Add your code to delete a face here
 }
 
-echo_instructions() {
+echo_instructions(){
+    echo "███████╗ █████╗  ██████╗███████╗██████╗ ███████╗ ██████╗ ██████╗  █████╗ ██████╗ ██╗"
+    echo "██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔══██╗██║"
+    echo "█████╗  ███████║██║     █████╗  ██████╔╝█████╗  ██║     ██║   ██║███████║██████╔╝██║"
+    echo "██╔══╝  ██╔══██║██║     ██╔══╝  ██╔══██╗██╔══╝  ██║     ██║   ██║██╔══██║██╔═══╝ ██║"
+    echo "██║     ██║  ██║╚██████╗███████╗██║  ██║███████╗╚██████╗╚██████╔╝██║  ██║██║     ██║"
+    echo "╚═╝     ╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝"
+
+    echo -e "\n\n"
+
     echo "Please select an option:"
     echo "1. Run Face Recognition"
     echo "2. Add a new Face"

@@ -19,7 +19,7 @@ font_thickness = 1
 # the process count - this is a check to process the faces in a frame
 # after a specific iteration
 process_count = 0
-n = 5
+n = 15
 
 # set the named window
 window_name = 'FaceReco'

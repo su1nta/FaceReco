@@ -68,7 +68,7 @@ else
 
     cd ..
 fi
-
+mkdir Unknown_Faces
 # Adding OPENBLAS to path
 line_to_check='export LD_LIBRARY_PATH="/usr/local/lib:PATH"'
 

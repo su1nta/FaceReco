@@ -79,7 +79,7 @@ def compare_faces(detected_faces, encoded_faces):
     compare_distance = []
 
     # tolerance - how much distance measure will be tolerated
-    tolerance = 0.6
+    tolerance = 0.53
 
     index = 0
     for encoded_face in encoded_faces:
