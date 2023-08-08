@@ -20,10 +20,10 @@ def get_json_path(status):
 
     # Construct the path to "test.file"
     if status == 'k':
-        path = os.path.join(current_directory, '..', 
+        path = os.path.join(current_directory,
                             'assets', 'known_faces.json')  
     elif status == 'u':
-        path = os.path.join(current_directory, '..', 
+        path = os.path.join(current_directory, 
                             'assets', 'unknown_faces.json')
 
     return path

@@ -8,7 +8,7 @@ import time
 import numpy as np
 import json
 import cv2 as cv
-from FaceRecoApi.faces import get_json_path, add_face
+from faces import get_json_path, add_face
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -18,7 +18,7 @@ from email.mime.image import MIMEImage
 # Example usage
 sender_email = "facereco3@gmail.com"
 sender_password = "elvcnipsgokhjvuo"
-receiver_email = "sukanta.aismit@gmail.com"
+receiver_email = "shyamendrahazra@gmail.com"
 subject = "Sending unknown faces via email"
 message = "Unknown faces found in webcam."
 def mail_unknown_faces(frame):
