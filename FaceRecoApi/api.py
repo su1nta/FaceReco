@@ -1,7 +1,5 @@
 # import necessary packages
 import os
-import cv2
-import PIL.Image as pim
 import dlib
 import numpy as np
 import json
